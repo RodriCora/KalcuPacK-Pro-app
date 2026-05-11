@@ -1,0 +1,351 @@
+/* ==========================================
+   RESET & BODY (TU BASE)
+   ========================================== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #f5f5f5;
+    color: #2b2b2b;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.app{
+    max-width: 500px;
+    margin: auto;
+}
+
+/* ==========================================
+   SPLASH & ANIMACIÓN (TU ESTRUCTURA)
+   ========================================== */
+#splashScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #5b1e8f;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    transition: 0.4s;
+}
+
+.hidden-splash {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: 0.5s;
+}
+
+#splashScreen h1{
+    color: white;
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.road{
+    width: 300px;
+    height: 120px;
+    position: relative;
+    border-bottom: 4px dashed rgba(255,255,255,0.25);
+    margin-bottom: 40px;
+}
+
+.delivery-van{
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    font-size: 50px;
+    transform: scaleX(-1);
+    animation: entregaTotal 5s linear infinite;
+}
+
+.destination{
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    font-size: 55px;
+}
+
+.p-uno, .p-dos, .p-tres{
+    position: absolute;
+    bottom: 60px;
+    left: 25px;
+    font-size: 25px;
+    opacity: 0;
+}
+
+.p-uno{ animation: cargaPaquete 5s ease-in infinite; animation-delay: .2s; }
+.p-dos{ animation: cargaPaquete 5s ease-in infinite; animation-delay: .8s; }
+.p-tres{ animation: cargaPaquete 5s ease-in infinite; animation-delay: 1.4s; }
+
+@keyframes entregaTotal{
+    0%,35%{ left: 10px; opacity: 1; }
+    70%{ left: 240px; opacity: 1; }
+    85%{ left: 240px; opacity: 0; }
+    90%,100%{ left: 10px; opacity: 0; }
+}
+
+@keyframes cargaPaquete{
+    0%{ transform: translateY(-50px); opacity: 0; }
+    5%{ opacity: 1; }
+    15%{ transform: translateY(40px); opacity: 0; }
+    20%,100%{ opacity: 0; }
+}
+
+/* ==========================================
+   PANTALLAS (FIJAS PARA QUE NO SALTEN)
+   ========================================== */
+.screen{
+    display: none;
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    min-height: 650px; /* Tu medida original */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    border-top: 8px solid #5b1e8f;
+    position: relative;
+}
+
+.screen.active {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen h2{
+    text-align: center;
+    font-size: 30px;
+    color: #5b1e8f;
+    margin-bottom: 30px;
+    min-height: 40px; /* Asegura espacio para el título */
+}
+
+/* ==========================================
+   BOTONES Y SELECTS
+   ========================================== */
+.buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.option-btn, .next-btn, .back-btn, .finish-btn{
+    width: 85%;
+    padding: 20px;
+    border: none;
+    border-radius: 18px;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+    text-align: center;
+}
+
+.option-btn, .next-btn{ background: #5b1e8f; }
+.back-btn, .finish-btn{ background: #d32f2f; }
+
+.option-btn:hover, .next-btn:hover, .back-btn:hover, .finish-btn:hover{
+    transform: scale(1.02);
+}
+
+select{
+    width: 85%;
+    padding: 18px;
+    border-radius: 15px;
+    border: 2px solid #5b1e8f;
+    font-size: 18px;
+    background: white;
+    color: #2b2b2b;
+}
+
+/* ==========================================
+   CONTADORES (TU TAMAÑO REPARADO)
+   ========================================== */
+.counter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.counter button{
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 18px;
+    background: #d32f2f;
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.counter input{
+    width: 90px;
+    height: 70px;
+    border: 2px solid #5b1e8f;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #5b1e8f;
+}
+
+/* ==========================================
+   NAVEGACIÓN (CLAVADA AL FONDO)
+   ========================================== */
+.navigation {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    width: 100%;             /* Ocupa todo el ancho para poder centrar */
+    margin-top: auto;        /* Lo mantiene abajo */
+    padding: 20px 0;
+}
+
+.navigation button{
+    flex: 1;
+}
+
+/* ==========================================
+   RESUMEN, TOTAL E HISTORIAL
+   ========================================== */
+.summary{
+    width: 100%;
+    background: #f9f9f9;
+    border-radius: 18px;
+    padding: 20px;
+    border-left: 5px solid #5b1e8f;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 18px;
+}
+
+.total{
+    margin: 20px 0;
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.historial{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.ticket{
+    background: #f9f9f9;
+    border-left: 5px solid #5b1e8f;
+    border-radius: 15px;
+    padding: 18px;
+}
+
+#btnConfig{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100;
+}
+/* ==========================================
+   PANTALLA ADMIN / CONFIGURACIÓN
+   ========================================== */
+#pinAdmin {
+    width: 85%;
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+}
+
+.admin-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 380px; /* Para que no tape los botones de abajo */
+    padding: 5px;
+}
+
+.zona-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 15px;
+    border-left: 5px solid #5b1e8f;
+    margin-bottom: 10px;
+}
+
+.zona-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #5b1e8f;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.input-group label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.input-group input {
+    width: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    text-align: right;
+}
+.admin-grid { display: flex; flex-direction: column; gap: 10px; width: 100%; overflow-y: auto; max-height: 350px; }
+.zona-card { background: #f9f9f9; padding: 15px; border-radius: 15px; border-left: 5px solid #5b1e8f; margin-bottom: 10px; }
+.input-group { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.input-group input { width: 80px; padding: 5px; text-align: right; }
+
+#loginAdmin {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#btnEntrarAdmin {
+    width: 100% !important; /* Fuerza el ancho para que coincida con el input */
+    margin: 0 auto;
+}
+.zona-card hr {
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 10px 0;
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KalcuPacK Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<main class="app">
+    <section id="splashScreen">
+        <div class="road">
+            <span class="p-uno">📦</span>
+            <span class="p-dos">📦</span>
+            <span class="p-tres">📦</span>
+            <span class="delivery-van">🚚</span>
+            <span class="destination">🏠</span>
+        </div>
+        <h1>KALCUPACK PRO</h1>
+        <p style="color: white; opacity: 0.8;">Iniciando ruta...</p>
+    </section>
+
+    <section class="screen active" id="homeScreen">
+        <button id="btnConfig">⚙️</button>
+        <h2>📦 KalcuPacK</h2>
+        <div class="buttons">
+            <button id="btnNuevo" class="option-btn">➕ Nuevo</button>
+            <button id="btnHistorial" class="option-btn">📚 Historial</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>📍 Elegí la zona</h2>
+        <div class="buttons">
+            <button class="option-btn zona-btn" data-zona="A">Zona A</button>
+            <button class="option-btn zona-btn" data-zona="B">Zona B</button>
+        </div>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>🏘️ Barrio</h2>
+        <select id="selectBarrio">
+            <option value="">Seleccionar barrio...</option>
+        </select>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+            <button id="nextBarrio" class="next-btn" disabled>Siguiente</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>📦 Paquetes</h2>
+        <p style="text-align:center">Cantidad común:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="paquetes" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <p style="text-align:center">Paquetes Extra:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="paqueteExtra" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+            <button class="next-btn">Siguiente</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>📱 Movistar</h2>
+        <p style="text-align:center">Cantidad:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="movistar" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+            <button class="next-btn">Siguiente</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>💳 Tarjetas</h2>
+        <p style="text-align:center">Cantidad:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="tarjetas" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+            <button class="next-btn">Siguiente</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>🚚 Retiros</h2>
+        <p style="text-align:center">Cantidad retiros:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="retiros" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <p style="text-align:center">Retiros Extra:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="retiroExtra" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+            <button class="next-btn">Siguiente</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>📝 Gestiones</h2>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="gestiones" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+            <p style="color: gray; font-size: 14px; text-align: center; margin: 15px 10px;">
+            * La Gestión toma automáticamente el valor del Paquete de la zona elegida.
+            </p>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+            <button class="next-btn">Siguiente</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>✅ Resumen</h2>
+        <div class="summary"></div>
+        <div class="total" id="montoTotalResumen">TOTAL: $0</div>
+        <div class="navigation">
+            <button class="back-btn">Atrás</button>
+            <button class="finish-btn">Guardar</button>
+        </div>
+    </section>
+
+    <section class="screen">
+        <h2>📚 Historial</h2>
+        <select id="filtroMes" style="margin-bottom: 10px;"></select>
+        <div class="buttons">
+            <button id="btnHParcial" class="option-btn">Totales del Mes</button>
+            <button id="btnHCompleto" class="option-btn">Detalle Diario</button>
+            <button id="btnHBorrar" class="option-btn" style="background:#555">Limpiar Historial</button>
+        </div>
+        <div class="navigation"><button class="back-btn">Volver</button></div>
+    </section>
+
+    <section class="screen">
+        <h2 id="histTitulo">Detalle</h2>
+        <div class="historial" style="overflow-y: auto; max-height: 300px;"></div>
+        <div class="total" id="histTotalMonto" style="font-size: 20px;"></div>
+        <button id="btnDescargarPDF" class="option-btn" style="background:#2e7d32; display:none; width: 85%; margin: 10px auto;">Descargar PDF</button>
+        <div class="navigation"><button class="back-btn">Volver</button></div>
+    </section>
+
+    <section class="screen" id="adminScreen">
+    <div class="navigation" style="justify-content: center;">
+        <button class="back-btn" onclick="location.reload()" style="width: 85%;">Volver al Inicio</button>
+    </div>
+    <h2>⚙️ Configuración</h2>
+
+    <div id="loginAdmin">
+        <p style="text-align:center; margin-bottom: 15px;">Ingrese PIN de acceso:</p>
+        <input type="password" id="pinAdmin" placeholder="****" maxlength="4" style="width: 85%; display: block; margin: 0 auto 20px auto; padding: 15px; text-align: center; font-size: 24px; border-radius: 12px; border: 1px solid #ccc;">
+        <button id="btnEntrarAdmin" class="option-btn">Entrar</button>
+    </div>
+
+    <div id="formPrecios" style="display:none; width: 100%;">
+    <div class="admin-grid">
+        
+        <div class="zona-card">
+            <h3>📍 Zona A</h3>
+            <div class="input-group"><label>Paquete:</label><input type="number" id="p_A_paq"></div>
+            <div class="input-group"><label>Paquete Extra:</label><input type="number" id="p_A_ext"></div>
+            <hr>
+            <div class="input-group"><label>Retiro:</label><input type="number" id="p_A_ret"></div>
+            <div class="input-group"><label>Retiro Extra:</label><input type="number" id="p_A_rext"></div>
+        </div>
+
+        <div class="zona-card">
+            <h3>📍 Zona B</h3>
+            <div class="input-group"><label>Paquete:</label><input type="number" id="p_B_paq"></div>
+            <div class="input-group"><label>Paquete Extra:</label><input type="number" id="p_B_ext"></div>
+            <hr>
+            <div class="input-group"><label>Retiro:</label><input type="number" id="p_B_ret"></div>
+            <div class="input-group"><label>Retiro Extra:</label><input type="number" id="p_B_rext"></div>
+        </div>
+
+        <div class="zona-card">
+            <h3>📱 Otros Servicios</h3>
+            <div class="input-group"><label>Tarjeta:</label><input type="number" id="p_tarjeta"></div>
+            <div class="input-group"><label>Movistar:</label><input type="number" id="p_movistar"></div>
+        </div>
+
+        <p style="font-size: 12px; color: #777; text-align: center; padding: 10px;">
+            * La Gestión toma automáticamente el valor del Paquete de la zona elegida.
+        </p>
+
+    </div>
+
+    <button id="btnGuardarPrecios" class="option-btn" style="background:#2e7d32; margin-top: 15px;">
+        💾 Guardar Cambios
+    </button>
+</div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
