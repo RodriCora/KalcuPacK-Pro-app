@@ -278,13 +278,28 @@ document.getElementById("btnDescargarPDF").addEventListener("click", () => {
 // =====================
 // 6. CONTADORES (+ / -)
 // =====================
-
 document.querySelectorAll(".counter").forEach(counter => {
     const input = counter.querySelector("input");
-    counter.querySelector(".plus-btn").addEventListener("click", () => { input.value = Number(input.value) + 1; });
-    counter.querySelector(".minus-btn").addEventListener("click", () => { input.value = Math.max(0, Number(input.value) - 1); });
-    input.addEventListener("focus", (e) => {
-        setTimeout(() => { e.target.select(); e.target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+    const btnPlus = counter.querySelector(".plus-btn");
+    const btnMinus = counter.querySelector(".minus-btn");
+
+    // Usamos 'pointerdown' en lugar de 'click' para que la suma sea instantánea 
+    // y ocurra antes de que el teclado intente abrirse.
+    btnPlus.addEventListener("pointerdown", (e) => {
+        e.preventDefault(); // Evita que el input gane el foco al tocar el botón
+        input.value = Number(input.value) + 1;
+    });
+
+    btnMinus.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        input.value = Math.max(0, Number(input.value) - 1);
+    });
+
+    // Permitir que el teclado se abra solo al tocar el número directamente
+    input.addEventListener("click", (e) => {
+        if (!e.target.readOnly) {
+            e.target.select();
+        }
     });
 });
 
