@@ -282,27 +282,30 @@ document.querySelectorAll(".counter").forEach(counter => {
     const input = counter.querySelector("input");
     const btnPlus = counter.querySelector(".plus-btn");
     const btnMinus = counter.querySelector(".minus-btn");
+    const form = counter.closest("form"); // Busca el form que envuelve al input
 
-    // Usamos 'pointerdown' en lugar de 'click' para que la suma sea instantánea 
-    // y ocurra antes de que el teclado intente abrirse.
-    btnPlus.addEventListener("pointerdown", (e) => {
-        e.preventDefault(); // Evita que el input gane el foco al tocar el botón
-        input.value = Number(input.value) + 1;
-    });
-
-    btnMinus.addEventListener("pointerdown", (e) => {
+    btnPlus.onclick = function(e) {
         e.preventDefault();
-        input.value = Math.max(0, Number(input.value) - 1);
-    });
+        input.value = (Number(input.value) || 0) + 1;
+    };
 
-    // Permitir que el teclado se abra solo al tocar el número directamente
-    input.addEventListener("click", (e) => {
-        if (!e.target.readOnly) {
-            e.target.select();
-        }
-    });
+    btnMinus.onclick = function(e) {
+        e.preventDefault();
+        input.value = Math.max(0, (Number(input.value) || 0) - 1);
+    };
+
+    input.onclick = function() {
+        if (!this.readOnly) this.select();
+    };
+
+    // Si el usuario presiona Enter, el formulario se "envía"
+    if (form) {
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            input.blur(); // ESTO baja el teclado sí o sí
+        };
+    }
 });
-
 // =====================
 // 7. SECCIÓN ADMIN PIN
 // =====================

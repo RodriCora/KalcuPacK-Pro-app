@@ -53,81 +53,96 @@
         </div>
     </section>
 
+    <!-- PANTALLA PAQUETES CON FORM -->
     <section class="screen">
         <h2>📦 Paquetes</h2>
-        <p style="text-align:center">Cantidad común:</p>
-        <div class="counter">
-            <button class="minus-btn">-</button>
-            <input type="number" value="0" data-key="paquetes" inputmode="numeric">
-            <button class="plus-btn">+</button>
-        </div>
-        <p style="text-align:center">Paquetes Extra:</p>
-        <div class="counter">
-            <button class="minus-btn">-</button>
-            <input type="number" value="0" data-key="paqueteExtra" readonly>
-            <button class="plus-btn">+</button>
-        </div>
+        <form action="javascript:void(0);">
+            <p style="text-align:center">Cantidad común:</p>
+            <div class="counter">
+                <button type="button" class="minus-btn">-</button>
+                <input type="number" value="0" data-key="paquetes" inputmode="numeric">
+                <button type="button" class="plus-btn">+</button>
+            </div>
+            <p style="text-align:center">Paquetes Extra:</p>
+            <div class="counter">
+                <button type="button" class="minus-btn">-</button>
+                <input type="number" value="0" data-key="paqueteExtra" readonly>
+                <button type="button" class="plus-btn">+</button>
+            </div>
+        </form>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
+    <!-- PANTALLA MOVISTAR CON FORM -->
     <section class="screen">
         <h2>📱 Movistar</h2>
-        <p style="text-align:center">Cantidad:</p>
-        <div class="counter">
-            <button class="minus-btn">-</button>
-            <input type="number" value="0" data-key="movistar" inputmode="numeric">
-            <button class="plus-btn">+</button>
-        </div>
+        <form action="javascript:void(0);">
+            <p style="text-align:center">Cantidad:</p>
+            <div class="counter">
+                <button type="button" class="minus-btn">-</button>
+                <input type="number" value="0" data-key="movistar" inputmode="numeric">
+                <button type="button" class="plus-btn">+</button>
+            </div>
+        </form>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
+    <!-- PANTALLA TARJETAS CON FORM -->
     <section class="screen">
         <h2>💳 Tarjetas</h2>
-        <p style="text-align:center">Cantidad:</p>
-        <div class="counter">
-            <button class="minus-btn">-</button>
-            <input type="number" value="0" data-key="tarjetas" inputmode="numeric">
-            <button class="plus-btn">+</button>
-        </div>
+        <form action="javascript:void(0);">
+            <p style="text-align:center">Cantidad:</p>
+            <div class="counter">
+                <button type="button" class="minus-btn">-</button>
+                <input type="number" value="0" data-key="tarjetas" inputmode="numeric">
+                <button type="button" class="plus-btn">+</button>
+            </div>
+        </form>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
+    <!-- PANTALLA RETIROS CON FORM -->
     <section class="screen">
         <h2>🚚 Retiros</h2>
-        <p style="text-align:center">Cantidad retiros:</p>
-        <div class="counter">
-            <button class="minus-btn">-</button>
-            <input type="number" value="0" data-key="retiros" readonly>
-            <button class="plus-btn">+</button>
-        </div>
-        <p style="text-align:center">Retiros Extra:</p>
-        <div class="counter">
-            <button class="minus-btn">-</button>
-            <input type="number" value="0" data-key="retiroExtra" readonly>
-            <button class="plus-btn">+</button>
-        </div>
+        <form action="javascript:void(0);">
+            <p style="text-align:center">Cantidad retiros:</p>
+            <div class="counter">
+                <button type="button" class="minus-btn">-</button>
+                <input type="number" value="0" data-key="retiros" readonly>
+                <button type="button" class="plus-btn">+</button>
+            </div>
+            <p style="text-align:center">Retiros Extra:</p>
+            <div class="counter">
+                <button type="button" class="minus-btn">-</button>
+                <input type="number" value="0" data-key="retiroExtra" readonly>
+                <button type="button" class="plus-btn">+</button>
+            </div>
+        </form>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
+    <!-- PANTALLA GESTIONES CON FORM -->
     <section class="screen">
         <h2>📝 Gestiones</h2>
-        <div class="counter">
-            <button class="minus-btn">-</button>
-            <input type="number" value="0" data-key="gestiones" >
-            <button class="plus-btn">+</button>
-        </div>
+        <form action="javascript:void(0);">
+            <div class="counter">
+                <button type="button" class="minus-btn">-</button>
+                <input type="number" value="0" data-key="gestiones" >
+                <button type="button" class="plus-btn">+</button>
+            </div>
+        </form>
             <p style="color: gray; font-size: 14px; text-align: center; margin: 15px 10px;">
             * La Gestión toma automáticamente el valor del Paquete de la zona elegida.
             </p>
@@ -217,6 +232,6 @@
 </div>
 </main>
 
-<script src="app.js?v=5.0"></script>
+<script src="app.js?v=11.0"></script> <!-- Subí la versión a 11.0 -->
 </body>
 </html>
