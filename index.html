@@ -6,6 +6,7 @@
     <title>KalcuPacK Pro</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <html lang="es" data-theme="dark"></html>
 </head>
 <body>
 
@@ -19,15 +20,23 @@
             <span class="p-uno">📦</span>
             <span class="p-dos">📦</span>
             <span class="p-tres">📦</span>
-            <span class="delivery-van">🚚</span>
+            <div class="delivery-van">
+                <span class="van-icon">🚚</span>
+            </div>
             <span class="destination">🏠</span>
         </div>
         <h1>KALCUPACK PRO</h1>
         <p style="color: white; opacity: 0.8;">Iniciando ruta...</p>
     </section>
 
+
     <!-- Pantalla 0: Home -->
     <section class="screen active" id="homeScreen">
+        <button id="btnDarkMode" class="btn-toggle-tema">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
         <button id="btnConfig">⚙️</button>
         <h2>📦 KalcuPacK</h2>
         <div class="buttons">
@@ -38,20 +47,29 @@
 
     <!-- Pantalla 1: Zona y Fecha -->
     <section class="screen">
-        <h2>📍 Elegí la zona</h2>
-        <div style="margin-bottom: 25px; text-align: center; width: 85%;">
-            <label style="color: white; font-size: 14px; display: block; margin-bottom: 8px; opacity: 0.9;">Fecha de la entrada:</label>
-            <input type="date" id="fechaEntrada" style="width: 100%; padding: 15px; border-radius: 12px; border: none; font-family: inherit; text-align: center; font-size: 16px; background: white; color: #333;">
+        <h2>📍 Iniciá tu ruta</h2>
+        
+        <!-- ESTE ES EL BLOQUE MEJORADO -->
+        <div class="fecha-container">
+            <label for="fechaEntrada">Fecha de Carga</label>
+            <div class="input-wrapper">
+                <input type="date" id="fechaEntrada" class="input-fecha">
+                <span class="calendar-icon"></span>
+            </div>
         </div>
+
+        <p style="color: white; margin-bottom: 10px; opacity: 0.8;">Elegí la zona de trabajo:</p>
         <div class="buttons">
             <button class="option-btn zona-btn" data-zona="A">Zona A</button>
             <button class="option-btn zona-btn" data-zona="B">Zona B</button>
         </div>
+        
         <div class="navigation">
             <button class="back-btn">Atrás</button>
         </div>
+        
         <button id="btnEliminarEntrada" style="display:none; background:#d32f2f; color:white; border:none; padding:12px; border-radius:8px; width:85%; margin: 20px auto; font-weight: bold;">
-        ❌ Eliminar Entrada
+            ❌ Eliminar Entrada
         </button>
     </section>
 
