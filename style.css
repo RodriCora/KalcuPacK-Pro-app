@@ -1041,3 +1041,35 @@ select{
 
     cursor: pointer;
 }
+/* =========================================================
+   LOGO TITLE
+   ========================================================= */
+
+.logo-title{
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    font-size: 40px;
+
+    font-weight: 900;
+
+    color: white;
+}
+
+
+.logo-icon{
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+
+    transform: translateY(-1px);
+}
