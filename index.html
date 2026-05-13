@@ -10,6 +10,10 @@
 <body>
 
 <main class="app">
+    <!-- CEREBRO DE EDICIÓN -->
+    <input type="hidden" id="editIndex" value="-1">
+
+    <!-- Pantalla de Carga (Violeta) -->
     <section id="splashScreen">
         <div class="road">
             <span class="p-uno">📦</span>
@@ -22,6 +26,7 @@
         <p style="color: white; opacity: 0.8;">Iniciando ruta...</p>
     </section>
 
+    <!-- Pantalla 0: Home -->
     <section class="screen active" id="homeScreen">
         <button id="btnConfig">⚙️</button>
         <h2>📦 KalcuPacK</h2>
@@ -31,8 +36,13 @@
         </div>
     </section>
 
+    <!-- Pantalla 1: Zona y Fecha -->
     <section class="screen">
         <h2>📍 Elegí la zona</h2>
+        <div style="margin-bottom: 25px; text-align: center; width: 85%;">
+            <label style="color: white; font-size: 14px; display: block; margin-bottom: 8px; opacity: 0.9;">Fecha de la entrada:</label>
+            <input type="date" id="fechaEntrada" style="width: 100%; padding: 15px; border-radius: 12px; border: none; font-family: inherit; text-align: center; font-size: 16px; background: white; color: #333;">
+        </div>
         <div class="buttons">
             <button class="option-btn zona-btn" data-zona="A">Zona A</button>
             <button class="option-btn zona-btn" data-zona="B">Zona B</button>
@@ -40,8 +50,12 @@
         <div class="navigation">
             <button class="back-btn">Atrás</button>
         </div>
+        <button id="btnEliminarEntrada" style="display:none; background:#d32f2f; color:white; border:none; padding:12px; border-radius:8px; width:85%; margin: 20px auto; font-weight: bold;">
+        ❌ Eliminar Entrada
+        </button>
     </section>
 
+    <!-- Pantalla 2: Barrio -->
     <section class="screen">
         <h2>🏘️ Barrio</h2>
         <select id="selectBarrio">
@@ -53,105 +67,113 @@
         </div>
     </section>
 
-    <!-- PANTALLA PAQUETES CON FORM -->
+    <!-- Pantalla 3: Paquetes -->
     <section class="screen">
         <h2>📦 Paquetes</h2>
-        <form action="javascript:void(0);">
-            <p style="text-align:center">Cantidad común:</p>
-            <div class="counter">
-                <button type="button" class="minus-btn">-</button>
-                <input type="number" value="0" data-key="paquetes" inputmode="numeric">
-                <button type="button" class="plus-btn">+</button>
-            </div>
-            <p style="text-align:center">Paquetes Extra:</p>
-            <div class="counter">
-                <button type="button" class="minus-btn">-</button>
-                <input type="number" value="0" data-key="paqueteExtra" readonly>
-                <button type="button" class="plus-btn">+</button>
-            </div>
-        </form>
+        <p style="text-align:center">Cantidad común:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="paquetes" inputmode="numeric">
+            <button class="plus-btn">+</button>
+        </div>
+        <p style="text-align:center">Paquetes Extra:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="paqueteExtra" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="container-subtotal">
+            <span class="label-subtotal">Subtotal de esta sección</span>
+            <div class="subtotal-pantalla" id="subtotal-paquetes">$ 0,00</div>
+        </div>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
-    <!-- PANTALLA MOVISTAR CON FORM -->
+    <!-- Pantalla 4: Movistar -->
     <section class="screen">
         <h2>📱 Movistar</h2>
-        <form action="javascript:void(0);">
-            <p style="text-align:center">Cantidad:</p>
-            <div class="counter">
-                <button type="button" class="minus-btn">-</button>
-                <input type="number" value="0" data-key="movistar" inputmode="numeric">
-                <button type="button" class="plus-btn">+</button>
-            </div>
-        </form>
+        <p style="text-align:center">Cantidad:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="movistar" inputmode="numeric">
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="container-subtotal">
+            <span class="label-subtotal">Subtotal de esta sección</span>
+            <div class="subtotal-pantalla" id="subtotal-movistar">$ 0,00</div>
+        </div>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
-    <!-- PANTALLA TARJETAS CON FORM -->
+    <!-- Pantalla 5: Tarjetas -->
     <section class="screen">
         <h2>💳 Tarjetas</h2>
-        <form action="javascript:void(0);">
-            <p style="text-align:center">Cantidad:</p>
-            <div class="counter">
-                <button type="button" class="minus-btn">-</button>
-                <input type="number" value="0" data-key="tarjetas" inputmode="numeric">
-                <button type="button" class="plus-btn">+</button>
-            </div>
-        </form>
+        <p style="text-align:center">Cantidad:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="tarjetas" inputmode="numeric">
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="container-subtotal">
+            <span class="label-subtotal">Subtotal de esta sección</span>
+            <div class="subtotal-pantalla" id="subtotal-tarjetas">$ 0,00</div>
+        </div>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
-    <!-- PANTALLA RETIROS CON FORM -->
+    <!-- Pantalla 6: Retiros -->
     <section class="screen">
         <h2>🚚 Retiros</h2>
-        <form action="javascript:void(0);">
-            <p style="text-align:center">Cantidad retiros:</p>
-            <div class="counter">
-                <button type="button" class="minus-btn">-</button>
-                <input type="number" value="0" data-key="retiros" readonly>
-                <button type="button" class="plus-btn">+</button>
-            </div>
-            <p style="text-align:center">Retiros Extra:</p>
-            <div class="counter">
-                <button type="button" class="minus-btn">-</button>
-                <input type="number" value="0" data-key="retiroExtra" readonly>
-                <button type="button" class="plus-btn">+</button>
-            </div>
-        </form>
+        <p style="text-align:center">Cantidad retiros:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="retiros" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <p style="text-align:center">Retiros Extra:</p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="retiroExtra" readonly>
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="container-subtotal">
+            <span class="label-subtotal">Subtotal de esta sección</span>
+            <div class="subtotal-pantalla" id="subtotal-retiros">$ 0,00</div>
+        </div>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
-    <!-- PANTALLA GESTIONES CON FORM -->
+    <!-- Pantalla 7: Gestiones -->
     <section class="screen">
         <h2>📝 Gestiones</h2>
-        <form action="javascript:void(0);">
-            <div class="counter">
-                <button type="button" class="minus-btn">-</button>
-                <input type="number" value="0" data-key="gestiones" >
-                <button type="button" class="plus-btn">+</button>
-            </div>
-        </form>
-            <p style="color: gray; font-size: 14px; text-align: center; margin: 15px 10px;">
-            * La Gestión toma automáticamente el valor del Paquete de la zona elegida.
-            </p>
+        <div class="counter">
+            <button class="minus-btn">-</button>
+            <input type="number" value="0" data-key="gestiones" >
+            <button class="plus-btn">+</button>
+        </div>
+        <div class="container-subtotal">
+            <span class="label-subtotal">Subtotal de esta sección</span>
+            <div class="subtotal-pantalla" id="subtotal-gestiones">$ 0,00</div>
+        </div>
         <div class="navigation">
             <button class="back-btn">Atrás</button>
             <button class="next-btn">Siguiente</button>
         </div>
     </section>
 
+    <!-- Pantalla 8: Resumen -->
     <section class="screen">
         <h2>✅ Resumen</h2>
         <div class="summary"></div>
@@ -162,6 +184,7 @@
         </div>
     </section>
 
+    <!-- Pantalla 9: Historial -->
     <section class="screen">
         <h2>📚 Historial</h2>
         <select id="filtroMes" style="margin-bottom: 10px;"></select>
@@ -173,6 +196,7 @@
         <div class="navigation"><button class="back-btn">Volver</button></div>
     </section>
 
+    <!-- Pantalla 10: Detalle Historial -->
     <section class="screen">
         <h2 id="histTitulo">Detalle</h2>
         <div class="historial" style="overflow-y: auto; max-height: 300px;"></div>
@@ -181,57 +205,46 @@
         <div class="navigation"><button class="back-btn">Volver</button></div>
     </section>
 
+    <!-- Pantalla 11: Configuración / Admin -->
     <section class="screen" id="adminScreen">
-    <div class="navigation" style="justify-content: center;">
-        <button class="back-btn" onclick="location.reload()" style="width: 85%;">Volver al Inicio</button>
-    </div>
-    <h2>⚙️ Configuración</h2>
-
-    <div id="loginAdmin">
-        <p style="text-align:center; margin-bottom: 15px;">Ingrese PIN de acceso:</p>
-        <input type="password" id="pinAdmin" placeholder="****" maxlength="4" style="width: 85%; display: block; margin: 0 auto 20px auto; padding: 15px; text-align: center; font-size: 24px; border-radius: 12px; border: 1px solid #ccc;">
-        <button id="btnEntrarAdmin" class="option-btn">Entrar</button>
-    </div>
-
-    <div id="formPrecios" style="display:none; width: 100%;">
-    <div class="admin-grid">
-        
-        <div class="zona-card">
-            <h3>📍 Zona A</h3>
-            <div class="input-group"><label>Paquete:</label><input type="number" id="p_A_paq"></div>
-            <div class="input-group"><label>Paquete Extra:</label><input type="number" id="p_A_ext"></div>
-            <hr>
-            <div class="input-group"><label>Retiro:</label><input type="number" id="p_A_ret"></div>
-            <div class="input-group"><label>Retiro Extra:</label><input type="number" id="p_A_rext"></div>
+        <div class="navigation" style="justify-content: center;">
+            <button class="back-btn" onclick="location.reload()" style="width: 85%;">Volver al Inicio</button>
         </div>
-
-        <div class="zona-card">
-            <h3>📍 Zona B</h3>
-            <div class="input-group"><label>Paquete:</label><input type="number" id="p_B_paq"></div>
-            <div class="input-group"><label>Paquete Extra:</label><input type="number" id="p_B_ext"></div>
-            <hr>
-            <div class="input-group"><label>Retiro:</label><input type="number" id="p_B_ret"></div>
-            <div class="input-group"><label>Retiro Extra:</label><input type="number" id="p_B_rext"></div>
+        <h2>⚙️ Configuración</h2>
+        <div id="loginAdmin">
+            <p style="text-align:center; margin-bottom: 15px;">Ingrese PIN de acceso:</p>
+            <input type="password" id="pinAdmin" placeholder="****" maxlength="4" style="width: 85%; display: block; margin: 0 auto 20px auto; padding: 15px; text-align: center; font-size: 24px; border-radius: 12px; border: 1px solid #ccc;">
+            <button id="btnEntrarAdmin" class="option-btn">Entrar</button>
         </div>
-
-        <div class="zona-card">
-            <h3>📱 Otros Servicios</h3>
-            <div class="input-group"><label>Tarjeta:</label><input type="number" id="p_tarjeta"></div>
-            <div class="input-group"><label>Movistar:</label><input type="number" id="p_movistar"></div>
+        <div id="formPrecios" style="display:none; width: 100%;">
+            <div class="admin-grid">
+                <div class="zona-card">
+                    <h3>📍 Zona A</h3>
+                    <div class="input-group"><label>Paquete:</label><input type="number" id="p_A_paq"></div>
+                    <div class="input-group"><label>Paquete Extra:</label><input type="number" id="p_A_ext"></div>
+                    <hr>
+                    <div class="input-group"><label>Retiro:</label><input type="number" id="p_A_ret"></div>
+                    <div class="input-group"><label>Retiro Extra:</label><input type="number" id="p_A_rext"></div>
+                </div>
+                <div class="zona-card">
+                    <h3>📍 Zona B</h3>
+                    <div class="input-group"><label>Paquete:</label><input type="number" id="p_B_paq"></div>
+                    <div class="input-group"><label>Paquete Extra:</label><input type="number" id="p_B_ext"></div>
+                    <hr>
+                    <div class="input-group"><label>Retiro:</label><input type="number" id="p_B_ret"></div>
+                    <div class="input-group"><label>Retiro Extra:</label><input type="number" id="p_B_rext"></div>
+                </div>
+                <div class="zona-card">
+                    <h3>📱 Otros</h3>
+                    <div class="input-group"><label>Tarjeta:</label><input type="number" id="p_tarjeta"></div>
+                    <div class="input-group"><label>Movistar:</label><input type="number" id="p_movistar"></div>
+                </div>
+            </div>
+            <button id="btnGuardarPrecios" class="option-btn" style="background:#2e7d32; margin-top: 15px;">💾 Guardar Cambios</button>
         </div>
-
-        <p style="font-size: 12px; color: #777; text-align: center; padding: 10px;">
-            * La Gestión toma automáticamente el valor del Paquete de la zona elegida.
-        </p>
-
-    </div>
-
-    <button id="btnGuardarPrecios" class="option-btn" style="background:#2e7d32; margin-top: 15px;">
-        💾 Guardar Cambios
-    </button>
-</div>
+    </section>
 </main>
 
-<script src="app.js?v=11.0"></script> <!-- Subí la versión a 11.0 -->
+<script src="app.js?v=9.0"></script>
 </body>
 </html>

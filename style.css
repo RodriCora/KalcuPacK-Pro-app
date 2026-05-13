@@ -349,3 +349,30 @@ select{
     border-top: 1px dashed #ccc;
     margin: 10px 0;
 }
+
+.container-subtotal {
+    background: #f8f9fa; /* Un gris muy claro para resaltar */
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px auto;
+    width: 85%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.label-subtotal {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.subtotal-pantalla {
+    font-size: 28px; /* Tamaño grande */
+    font-weight: 800;
+    color: #5b1e8f; /* El color violeta de tu marca */
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
