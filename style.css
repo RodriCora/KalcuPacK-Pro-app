@@ -191,15 +191,12 @@ body{
 
 .road{
 
-    width: 320px;
     height: 140px;
-
+    width: 100%;
     position: relative;
-
+    max-width: 320px;
     margin-bottom: 45px;
-
     border-bottom: 4px dashed rgba(255,255,255,0.22);
-
     overflow: hidden;
 }
 
@@ -435,7 +432,7 @@ body{
 
     border-radius: 25px;
 
-    min-height: 650px;
+    min-height: 100dvh;
 
     border-top: 8px solid var(--primary);
 
@@ -444,6 +441,8 @@ body{
     position: relative;
 
     color: var(--texto);
+
+    padding-bottom: 40px;
 }
 
 
@@ -1072,4 +1071,25 @@ select{
     font-size: 34px;
 
     transform: translateY(-1px);
+}
+
+/* =========================================================
+   FIX MOBILE
+   ========================================================= */
+
+html,
+body{
+
+    width: 100%;
+
+    overflow-x: hidden;
+}
+
+img,
+svg,
+button,
+input,
+select{
+
+    max-width: 100%;
 }
