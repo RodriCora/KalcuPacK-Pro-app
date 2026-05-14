@@ -1083,7 +1083,7 @@ body{
     width: 100%;
 
     overflow-x: hidden;
-}
+}   
 
 img,
 svg,
@@ -1092,4 +1092,220 @@ input,
 select{
 
     max-width: 100%;
+}
+/* =========================================================
+   COMPACT MOBILE UI
+   ========================================================= */
+
+html{
+    -webkit-text-size-adjust:100%;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+.screen{
+    padding:20px;
+    padding-bottom:30px;
+    min-height:100dvh;
+}
+
+.screen h2{
+    margin-bottom:20px;
+    min-height:auto;
+}
+
+.buttons{
+    gap:14px;
+}
+
+.option-btn,
+.next-btn,
+.back-btn,
+.finish-btn{
+    padding:16px;
+}
+
+.counter{
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.summary{
+    gap:8px;
+    padding:16px;
+}
+
+.historial{
+    gap:10px;
+}
+
+.ticket{
+    padding:14px;
+}
+
+.container-subtotal{
+    margin:14px auto;
+    padding:12px;
+}
+
+.fecha-container{
+    margin-bottom:18px;
+    padding:12px;
+}
+
+.navigation{
+    padding:14px 0 0;
+}
+
+.zona-card{
+    margin-bottom:8px;
+}
+
+.input-group input{
+    padding:8px;
+}
+
+img,
+svg,
+button,
+input,
+select{
+    max-width:100%;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width:480px){
+
+    .app{
+        width:100%;
+        margin:0;
+        border-radius:0;
+        padding:12px;
+    }
+
+    .screen{
+        padding:16px;
+        border-radius:18px;
+    }
+
+    .screen h2{
+        font-size:26px;
+        margin-bottom:16px;
+    }
+
+    .logo-title{
+        gap:6px;
+        font-size:32px;
+    }
+
+    .logo-icon{
+        font-size:28px;
+    }
+
+    .buttons{
+        gap:12px;
+    }
+
+    .option-btn,
+    .next-btn,
+    .back-btn,
+    .finish-btn{
+        width:100%;
+        padding:14px;
+        font-size:16px;
+        border-radius:14px;
+    }
+
+    select{
+        width:100%;
+        padding:14px;
+        font-size:16px;
+    }
+
+    .counter{
+        gap:10px;
+        margin-bottom:16px;
+    }
+
+    .counter button{
+        width:56px;
+        height:56px;
+        font-size:26px;
+        border-radius:14px;
+    }
+
+    .counter input{
+        width:72px;
+        height:56px;
+        font-size:24px;
+        border-radius:14px;
+    }
+
+    .summary{
+        padding:14px;
+        font-size:15px;
+    }
+
+    .total{
+        font-size:28px;
+        margin:14px 0;
+    }
+
+    .subtotal-pantalla{
+        font-size:24px;
+    }
+
+    .container-subtotal{
+        width:100%;
+    }
+
+    .fecha-container{
+        width:100%;
+    }
+
+    #pinAdmin{
+        width:100%;
+    }
+
+    .road{
+        max-width:250px;
+        height:110px;
+        margin-bottom:20px;
+    }
+
+    .delivery-van{
+        font-size:42px;
+    }
+
+    .destination{
+        font-size:46px;
+    }
+
+    .p-uno,
+    .p-dos,
+    .p-tres{
+        font-size:20px;
+    }
+
+    #btnConfig{
+        top:12px;
+        right:12px;
+        font-size:20px;
+    }
+
+    .btn-toggle-tema{
+        top:12px;
+        left:12px;
+    }
+
+    .historial{
+        max-height:none;
+    }
 }
