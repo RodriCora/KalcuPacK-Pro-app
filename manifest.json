@@ -1,19 +1,20 @@
 {
   "name": "KalcuPacK Pro",
   "short_name": "KalcuPacK",
-  "start_url": "/KalcuPacK-Pro-app/",
+  "id": "/KalcuPacK-Pro-app/",
+  "start_url": "/KalcuPacK-Pro-app/index.html",
   "scope": "/KalcuPacK-Pro-app/",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#5b1e8f",
   "icons": [
     {
-      "src": "/KalcuPacK-Pro-app/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/KalcuPacK-Pro-app/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

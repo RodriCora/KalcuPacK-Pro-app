@@ -1,5 +1,4 @@
 const CACHE_NAME = "kalcupack-v3";
-
 const urlsToCache = [
   "/KalcuPacK-Pro-app/",
   "/KalcuPacK-Pro-app/index.html",
@@ -12,14 +11,12 @@ const urlsToCache = [
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
 });
 
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+    caches.match(event.request).then(response => response || fetch(event.request))
   );
 });

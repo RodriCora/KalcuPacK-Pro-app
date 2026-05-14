@@ -1309,3 +1309,34 @@ select{
         max-height:none;
     }
 }
+/* --- FIX DE NITIDEZ SAVASANA --- */
+[data-theme="dark"] .subtotal-pantalla, 
+[data-theme="dark"] #totalHastaMomento,
+[data-theme="dark"] #montoTotalResumen,
+[data-theme="dark"] #histTotalMonto,
+[data-theme="dark"] .total {
+    color: #ffffff !important;
+    text-shadow: 0 0 12px rgba(187, 134, 252, 0.9) !important;
+    font-weight: 900 !important;
+}
+
+/* Forzar que los textos informativos sean legibles */
+[data-theme="dark"] p, 
+[data-theme="dark"] label,
+[data-theme="dark"] .label-subtotal {
+    color: #e0d5ed !important;
+    opacity: 1 !important;
+}
+
+/* Estilo para los botones en modo oscuro */
+[data-theme="dark"] .option-btn {
+    background: #5b1e8f !important;
+    border: 1px solid #bb86fc !important;
+    box-shadow: 0 4px 15px rgba(187, 134, 252, 0.2);
+}
+
+/* El monto grande de 42px que tenías en el HTML */
+[data-theme="dark"] div[style*="font-size: 42px"] {
+    color: #ffffff !important;
+    text-shadow: 0 0 15px rgba(187, 134, 252, 1) !important;
+}
