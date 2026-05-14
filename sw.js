@@ -1,13 +1,13 @@
-const CACHE_NAME = "kalcupack-v1";
+const CACHE_NAME = "kalcupack-v3";
 
 const urlsToCache = [
-  "./",
-  "./index.html",
-  "./style.css",
-  "./app.js",
-  "./manifest.json",
-  "./icon-192.png",
-  "./icon-512.png"
+  "/KalcuPacK-Pro-app/",
+  "/KalcuPacK-Pro-app/index.html",
+  "/KalcuPacK-Pro-app/style.css",
+  "/KalcuPacK-Pro-app/app.js",
+  "/KalcuPacK-Pro-app/manifest.json",
+  "/KalcuPacK-Pro-app/icon-192.png",
+  "/KalcuPacK-Pro-app/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
