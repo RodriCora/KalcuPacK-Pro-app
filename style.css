@@ -1340,3 +1340,9 @@ select{
     color: #ffffff !important;
     text-shadow: 0 0 15px rgba(187, 134, 252, 1) !important;
 }
+.buttons {
+    display: flex;
+    gap: 20px;            /* Espacio horizontal entre botones */
+    margin-top: 40px;     /* Espacio respecto al logo */
+    justify-content: center;
+}

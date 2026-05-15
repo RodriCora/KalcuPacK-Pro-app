@@ -406,24 +406,25 @@ window.addEventListener('appinstalled', () => {
     botonInstalar.style.display = 'none';
     console.log('App instalada con éxito');
 });
-// --- LÓGICA DE INSTALACIÓN ---
+// --- LÓGICA DE INSTALACIÓN DEFINITIVA ---
 let deferredPrompt;
 const installBtn = document.getElementById('btnInstalar');
 
+// 1. Detectar si ya estamos en modo App para no hacer nada
+const esApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+// 2. Capturar el evento de instalación (Solo si no es App)
 window.addEventListener('beforeinstallprompt', (e) => {
-    // Evita que Chrome muestre el banner automático
     e.preventDefault();
-    // Guarda el evento
     deferredPrompt = e;
-    // Muestra el botón violeta
-    installBtn.style.display = 'block';
-    console.log("Evento de instalación capturado");
+    if (!esApp) {
+        installBtn.style.display = 'block';
+    }
 });
 
-// PLAN DE RESPALDO: Si pasan 3 segundos y el botón sigue oculto (porque el celu es viejo), 
-// lo mostramos con instrucciones manuales.
+// 3. Plan de respaldo para celus viejos (Solo si no es App)
 setTimeout(() => {
-    if (installBtn.style.display === 'none') {
+    if (!esApp && installBtn.style.display === 'none') {
         installBtn.style.display = 'block';
         installBtn.innerHTML = "📲 ¿Cómo instalar en este celu?";
         installBtn.onclick = () => {
@@ -432,19 +433,21 @@ setTimeout(() => {
     }
 }, 3000);
 
+// 4. Lógica del click
 installBtn.addEventListener('click', async () => {
     if (deferredPrompt) {
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            installBtn.style.display = 'none';
-        }
+        if (outcome === 'accepted') installBtn.style.display = 'none';
         deferredPrompt = null;
     }
 });
 
-// Ocultar si ya se instaló
+// 5. Ocultar al instalar o si ya se detecta como App
 window.addEventListener('appinstalled', () => {
     installBtn.style.display = 'none';
-    console.log('App instalada');
 });
+
+if (esApp) {
+    installBtn.style.display = 'none';
+}
