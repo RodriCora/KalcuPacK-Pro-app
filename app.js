@@ -374,3 +374,77 @@ if ("serviceWorker" in navigator) {
             .catch(err => console.log("Error:", err));
     });
 }
+
+let eventoInstalacion;
+const botonInstalar = document.getElementById('btnInstalar');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Evita que el navegador muestre su propio cartelito genérico
+    e.preventDefault();
+    // Guarda el evento para usarlo después
+    eventoInstalacion = e;
+    // Muestra nuestro botón personalizado
+    botonInstalar.style.display = 'block';
+});
+
+botonInstalar.addEventListener('click', async () => {
+    if (eventoInstalacion) {
+        // Muestra el prompt de instalación
+        eventoInstalacion.prompt();
+        // Espera la respuesta del usuario
+        const { outcome } = await eventoInstalacion.userChoice;
+        if (outcome === 'accepted') {
+            console.log('El usuario aceptó la instalación');
+            botonInstalar.style.display = 'none';
+        }
+        eventoInstalacion = null;
+    }
+});
+
+// Ocultar el botón si la app ya se instaló
+window.addEventListener('appinstalled', () => {
+    botonInstalar.style.display = 'none';
+    console.log('App instalada con éxito');
+});
+// --- LÓGICA DE INSTALACIÓN ---
+let deferredPrompt;
+const installBtn = document.getElementById('btnInstalar');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Evita que Chrome muestre el banner automático
+    e.preventDefault();
+    // Guarda el evento
+    deferredPrompt = e;
+    // Muestra el botón violeta
+    installBtn.style.display = 'block';
+    console.log("Evento de instalación capturado");
+});
+
+// PLAN DE RESPALDO: Si pasan 3 segundos y el botón sigue oculto (porque el celu es viejo), 
+// lo mostramos con instrucciones manuales.
+setTimeout(() => {
+    if (installBtn.style.display === 'none') {
+        installBtn.style.display = 'block';
+        installBtn.innerHTML = "📲 ¿Cómo instalar en este celu?";
+        installBtn.onclick = () => {
+            alert("Para instalar:\n1. Tocá los 3 puntitos del navegador.\n2. Buscá 'Instalar' o 'Agregar a pantalla de inicio'.");
+        };
+    }
+}, 3000);
+
+installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+});
+
+// Ocultar si ya se instaló
+window.addEventListener('appinstalled', () => {
+    installBtn.style.display = 'none';
+    console.log('App instalada');
+});
