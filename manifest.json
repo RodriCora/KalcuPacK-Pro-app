@@ -1,9 +1,7 @@
 {
   "name": "KalcuPacK Pro",
   "short_name": "KalcuPacK",
-  "id": "/KalcuPacK-Pro-app/",
-  "start_url": "/KalcuPacK-Pro-app/index.html",
-  "scope": "/KalcuPacK-Pro-app/",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#5b1e8f",
