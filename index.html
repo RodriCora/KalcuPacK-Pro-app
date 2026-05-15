@@ -273,7 +273,11 @@
 <script src="app.js"></script>
 <script>
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(reg => console.log("KalcuPack PWA Lista"))
+      .catch(err => console.error("Error de registro:", err));
+  });
 }
 </script>
 </body>
