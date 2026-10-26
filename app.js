@@ -6,9 +6,9 @@ document.documentElement.setAttribute("data-theme", "dark");
 localStorage.setItem("theme", "dark");
 
 let precios = JSON.parse(localStorage.getItem("misPrecios")) || {
-    A: { paquete: 2441.07, gestion: 2441.07, retiro: 2243.67, retiroExtra: 448.73, extra: 448.73, movistar: 2719.42 },
-    B: { paquete: 2243.67, gestion: 2243.67, retiro: 1809.70, retiroExtra: 361.84, extra: 361.84, movistar: 2719.42 },
-    global: { tarjeta: 1542.22 }
+    A: { paquete: 2733.89, gestion: 2733.89, retiro: 2512.91, retiroExtra: 502.58, extra: 502.58, movistar: 3045.75 },
+    B: { paquete: 2512.91, gestion: 2512.91, retiro: 2026.87, retiroExtra: 405.26, extra: 405.26, movistar: 3045.75 },
+    global: { tarjeta: 1727.28 }
 };
 
 const barriosPorZona = {
