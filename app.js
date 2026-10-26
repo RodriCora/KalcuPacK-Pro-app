@@ -5,6 +5,18 @@
 document.documentElement.setAttribute("data-theme", "dark");
 localStorage.setItem("theme", "dark");
 
+// ---------------------------------------------------------------------------
+// 🔄 SISTEMA DE VERSIÓN DE PRECIOS (Evita que el celular guarde los viejos)
+// Cada vez que modifiques los precios aquí abajo y subas a GitHub, 
+// cambia este texto (ej: de "v1" a "v2", "v3", etc.) para que se actualicen solos.
+// ---------------------------------------------------------------------------
+const VERSION_PRECIOS = "v1"; 
+
+if (localStorage.getItem("versionPrecios") !== VERSION_PRECIOS) {
+    localStorage.removeItem("misPrecios"); // Borra solo los precios viejos
+    localStorage.setItem("versionPrecios", VERSION_PRECIOS); // Guarda la nueva versión
+}
+
 let precios = JSON.parse(localStorage.getItem("misPrecios")) || {
     A: { paquete: 2733.89, gestion: 2733.89, retiro: 2512.91, retiroExtra: 502.58, extra: 502.58, movistar: 3045.75 },
     B: { paquete: 2512.91, gestion: 2512.91, retiro: 2026.87, retiroExtra: 405.26, extra: 405.26, movistar: 3045.75 },
@@ -164,7 +176,6 @@ function editarEntrada(index) {
     }, 100);
 }
 
-// NUEVA FUNCIÓN PARA EL BOTÓN ELIMINAR
 function eliminarEntradaActual() {
     const index = parseInt(document.getElementById("editIndex").value);
     if (index > -1 && confirm("¿Seguro que querés eliminar este registro?")) {
@@ -279,8 +290,6 @@ function iniciarApp() {
         nextBarrioBtn.disabled = (selectBarrio.value === "");
     });
 
-    // VINCULACIÓN DEL BOTÓN ELIMINAR
-
     document.getElementById("btnEliminarEntrada")?.addEventListener("click", eliminarEntradaActual);
     document.getElementById("btnHBorrar")?.addEventListener("click", limpiarHistorialCompleto);
 
@@ -375,45 +384,12 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-let eventoInstalacion;
-const botonInstalar = document.getElementById('btnInstalar');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    // Evita que el navegador muestre su propio cartelito genérico
-    e.preventDefault();
-    // Guarda el evento para usarlo después
-    eventoInstalacion = e;
-    // Muestra nuestro botón personalizado
-    botonInstalar.style.display = 'block';
-});
-
-botonInstalar.addEventListener('click', async () => {
-    if (eventoInstalacion) {
-        // Muestra el prompt de instalación
-        eventoInstalacion.prompt();
-        // Espera la respuesta del usuario
-        const { outcome } = await eventoInstalacion.userChoice;
-        if (outcome === 'accepted') {
-            console.log('El usuario aceptó la instalación');
-            botonInstalar.style.display = 'none';
-        }
-        eventoInstalacion = null;
-    }
-});
-
-// Ocultar el botón si la app ya se instaló
-window.addEventListener('appinstalled', () => {
-    botonInstalar.style.display = 'none';
-    console.log('App instalada con éxito');
-});
 // --- LÓGICA DE INSTALACIÓN DEFINITIVA ---
 let deferredPrompt;
 const installBtn = document.getElementById('btnInstalar');
 
-// 1. Detectar si ya estamos en modo App para no hacer nada
 const esApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-// 2. Capturar el evento de instalación (Solo si no es App)
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
@@ -422,9 +398,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
     }
 });
 
-// 3. Plan de respaldo para celus viejos (Solo si no es App)
 setTimeout(() => {
-    if (!esApp && installBtn.style.display === 'none') {
+    if (!esApp && installBtn && installBtn.style.display === 'none') {
         installBtn.style.display = 'block';
         installBtn.innerHTML = "📲 ¿Cómo instalar en este celu?";
         installBtn.onclick = () => {
@@ -433,8 +408,7 @@ setTimeout(() => {
     }
 }, 3000);
 
-// 4. Lógica del click
-installBtn.addEventListener('click', async () => {
+installBtn?.addEventListener('click', async () => {
     if (deferredPrompt) {
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
@@ -443,11 +417,11 @@ installBtn.addEventListener('click', async () => {
     }
 });
 
-// 5. Ocultar al instalar o si ya se detecta como App
 window.addEventListener('appinstalled', () => {
-    installBtn.style.display = 'none';
+    if(installBtn) installBtn.style.display = 'none';
 });
 
-if (esApp) {
+if (esApp && installBtn) {
     installBtn.style.display = 'none';
 }
+
